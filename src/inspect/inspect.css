@@ -115,7 +115,7 @@ button {
   display: flex;
   align-items: center;
   width: 100vw;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .settings-bar > .use-tabs {

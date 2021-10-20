@@ -1,16 +1,15 @@
 {
-  "name": "Devtools",
-  "version": "1.0.0",
-  "description": "",
+  "name": "remote-devtools",
+  "version": "0.0.1",
+  "description": "Connect and debug a remote JS device via websockets",
   "main": "src/server/index.mjs",
   "scripts": {
-    "start": "node src/server/index.mjs",
+    "start": "npm run build; node src/server/index.mjs",
     "build": "rm -rf dist; node esbuild.config.mjs",
     "build-watch": "rm -rf dist; node esbuild.config.mjs --watch"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Luke Mckeen",
+  "license": "MIT",
   "dependencies": {
     "express": "^4.17.1",
     "socket.io": "^4.2.0",
