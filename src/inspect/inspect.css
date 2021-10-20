@@ -1,0 +1,127 @@
+:root {
+  --light-text: hsl(0, 0%, 15%);
+  --light-background: hsl(0, 0%, 100%);
+  --light-select: hsl(204, 66%, 85%);
+  --light-border: hsl(0, 0%, 90%);
+  --light-scrollbar: hsl(0, 0%, 25%);
+  --dark-text: hsl(0, 0%, 85%);
+  --dark-background: hsl(0, 0%, 15%);
+  --dark-select: hsl(0, 0%, 40%);
+  --dark-border: hsl(0, 0%, 30%);
+  --dark-scrollbar: hsl(0, 0%, 75%);
+  --text: var(--light-text);
+  --background: var(--light-background);
+  --select: var(--light-select);
+  --border: var(--light-border);
+  --scrollbar: var(--light-scrollbar);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: var(--dark-text);
+    --background: var(--dark-background);
+    --select: var(--dark-select);
+    --border: var(--dark-border);
+    --scrollbar: var(--dark-scrollbar);
+  }
+}
+
+body {
+  font-family: sans-serif;
+  font-size: 18px;
+  margin: 0;
+  color: var(--text);
+  background: var(--background);
+}
+
+* {
+  scrollbar-width: thin;
+}
+
+*::-webkit-scrollbar {
+  width: 7px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar);
+}
+
+*::selection {
+  background: var(--select);
+}
+
+*::-moz-selection {
+  background: var(--select);
+}
+
+button {
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.address-bar {
+  padding: 15px;
+  height: 75px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.address-bar > * {
+  font-size: inherit;
+  padding: 5px 10px;
+}
+
+.address-bar > input {
+  width: min(50vw, 800px);
+}
+
+.error {
+  border: 2px hsl(0, 100%, 50%) solid;
+}
+
+.disable {
+  opacity: 0.4;
+  pointer-events:none;
+}
+
+.inspect-list {
+  height: calc(100vh - 75px - 70px);
+  overflow-y: auto;
+}
+
+.inspect-list > .item {
+  margin: 30px 15px;
+}
+
+.inspect-list > .item .ip {
+  margin: 10px 0;
+}
+
+.inspect-list > .item button {
+  margin: 10px 10px 0 0;
+}
+
+.inspect-list > .item .ip,
+.inspect-list > .item .href,
+.inspect-list > .item .title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.settings-bar {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  justify-content: end;
+}
+
+.settings-bar > .use-tabs {
+  position: relative;
+  right: 30px;
+  height: 15px;
+  width: 15px;
+  margin-left: 40px;
+}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Inspect</title>
+  <link rel="stylesheet" href="/inspect/inspect.css">
+</head>
+<body>
+  <div class="address-bar">
+    <input placeholder="Input URL to Load" >
+    <button class="load">Load</button>
+  </div>
+  <div class="inspect-list"></div>
+  <div class="settings-bar">
+    <div>Inspect in Tabs</div>
+    <input type="checkbox" class="use-tabs">
+  </div>
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/inspect/inspect.js" type="module"></script>
+</html>

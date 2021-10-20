@@ -1,0 +1,23 @@
+{
+  "name": "Devtools",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server/index.mjs",
+  "scripts": {
+    "start": "node src/server/index.mjs",
+    "build": "rm -rf dist; node esbuild.config.mjs",
+    "build-watch": "rm -rf dist; node esbuild.config.mjs --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^4.2.0",
+    "socket.io-client": "^4.2.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.12.29",
+    "glob": "^7.2.0"
+  }
+}

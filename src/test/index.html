@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test site</title>
+	<style>
+		body {
+			background: black
+		}
+		h1 {
+			color: white
+		}
+	</style>
+  <script src="http://192.168.2.15:3030/client/client.js"></script>
+</head>
+<body>
+  <h1>Testing Site</h1>
+</body>
+<script>
+  var num = 0
+  setInterval(function() {
+    console[num % 2 ? 'warn' : 'error']('foo bar', num)
+    num++
+  }, 10)
+</script>
+</html>

@@ -1,0 +1,128 @@
+:root {
+  --light-text: hsl(0, 0%, 13%);
+  --light-background: hsl(0, 0%, 100%);
+  --light-select: hsl(204, 66%, 84%);
+  --light-border: hsl(0, 0%, 93%);
+  --light-scrollbar: hsl(0, 0%, 23%);
+
+  --light-warn-text: hsl(40, 100%, 20%);
+  --light-warn-background: hsl(50, 100%, 95%);
+  --light-error-text: hsl(0, 100%, 40%);
+  --light-error-background: hsl(0, 100%, 97%);
+  --light-debug-text: hsl(215, 100%, 65%);
+
+  --dark-text: hsl(0, 0%, 80%);
+  --dark-background: hsl(0, 0%, 13%);
+  --dark-select: hsl(0, 0%, 30%);
+  --dark-border: hsl(0, 0%, 27%);
+  --dark-scrollbar: hsl(0, 0%, 75%);
+  --dark-warn-text: hsl(40, 100%, 80%);
+  --dark-warn-background: hsl(50, 100%, 10%);
+  --dark-error-text: hsl(0, 100%, 75%);
+  --dark-error-background: hsl(0, 100%, 8%);
+  --dark-debug-text: hsl(215, 100%, 65%);
+  
+  --text: var(--light-text);
+  --background: var(--light-background);
+  --select: var(--light-select);
+  --border: var(--light-border);
+  --scrollbar: var(--light-scrollbar);
+  --warn-text: var(--light-warn-text);
+  --warn-background: var(--light-warn-background);
+  --error-text: var(--light-error-text);
+  --error-background: var(--light-error-background);
+  --debug-text: var(--light-debug-text);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: var(--dark-text);
+    --background: var(--dark-background);
+    --select: var(--dark-select);
+    --border: var(--dark-border);
+    --scrollbar: var(--dark-scrollbar);
+    --warn-text: var(--dark-warn-text);
+    --warn-background: var(--dark-warn-background);
+    --error-text: var(--dark-error-text);
+    --error-background: var(--dark-error-background);
+    --debug-text: var(--dark-debug-text);
+  }
+}
+
+body {
+  font-family: sans-serif;
+  color: var(--text);
+  background: var(--background);
+  margin: 0;
+}
+
+* {
+  scrollbar-width: thin;
+}
+
+*::-webkit-scrollbar {
+  width: 7px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar);
+}
+
+*::selection {
+  background: var(--select);
+}
+
+*::-moz-selection {
+  background: var(--select);
+}
+
+.console {
+  position: relative;
+  margin-top: 2px;
+  border-top: 1px solid var(--border);
+  contain: content;
+}
+
+.console .chunk {
+  min-height: 19px;
+}
+
+.console .item {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  padding-right: 25px;
+  contain: content;
+  background: var(--background);
+  
+}
+
+.console .item::before {
+  content: '';
+  width: 25px;
+}
+
+.console .item::after {
+  content: var(--line-number, '""');
+  color: var(--text);
+  margin-left: auto;
+}
+
+.console .item.warn {
+  color: var(--warn-text);
+  background: var(--warn-background);
+}
+
+.console .item.error {
+  color: var(--error-text);
+  background: var(--error-background);
+}
+
+.console .item.debug {
+  color: var(--debug-text);
+}
+
+.sentinel-top,
+.sentinel-bottom {
+  height: 1px;
+  width: 1px;
+}
