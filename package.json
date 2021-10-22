@@ -4,7 +4,8 @@
   "description": "Connect and debug a remote JS device via websockets",
   "main": "src/server/index.mjs",
   "scripts": {
-    "start": "npm run build; node src/server/index.mjs",
+    "start": "npm run build; npm run server",
+    "server": "node src/server/index.mjs",
     "build": "rm -rf dist; node esbuild.config.mjs",
     "build-watch": "rm -rf dist; node esbuild.config.mjs --watch"
   },
