@@ -38,8 +38,8 @@ export function addClient(client) {
     sendInspectorBroadcast('remove', clientId)
   })
 
-  client.on('console', data => {
-    send(`${clientId}-devtools`, 'console', data)
+  client.onAny((type, data) => {
+    send(`${clientId}-devtools`, type, data)
   })
 }
 
