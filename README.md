@@ -4,8 +4,6 @@ Connect and debug a remote JS device via websockets
 
 <img src="https://raw.githubusercontent.com/lmckeen/remote-devtools/main/logo.png"/>
 
-<br>
-
 ## How to Use Remote Devtools
 
 Run server on the device you want to view devtools on
