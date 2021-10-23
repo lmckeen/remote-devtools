@@ -1,29 +1,53 @@
 var queryParams = {}
 var socket
+var socketScript = document.createElement('script')
 
-location.search.slice(1).split('&').forEach(function(param) {
-  var vals = param.split('=')
-	queryParams[vals[0]] = decodeURIComponent(vals[1])
-})
+var log = console.log
+var debug = console.debug
+var dir = console.dir
+var error = console.error
+var info = console.info
+var warn = console.warn
+
+console.log = consoleData.bind(log)
+console.debug = consoleData.bind(debug)
+console.dir = consoleData.bind(dir)
+console.error = consoleData.bind(error)
+console.info = consoleData.bind(info)
+console.warn = consoleData.bind(warn)
+
+location.search
+  .slice(1)
+  .split('&')
+  .forEach(function urlParamsToObject(param) {
+    var vals = param.split('=')
+
+    queryParams[vals[0]] = decodeURIComponent(vals[1])
+  })
+
+socketScript.src = queryParams.inspect + 'socket.io/socket.io.js'
 
 function consoleData() {
   var args = Array.prototype.slice.call(arguments)
-  var lineNumber = 0;
+  var lineNumber = 0
+  var errorArr
+  var data
 
   try {
-    throw new Error();
-  } catch (error) {
-    var errorArr = error.stack.split('\n')[2].split(' ')
+    throw new Error()
+  } catch (err) {
+    errorArr = err.stack.split('\n')[2].split(' ')
+
     lineNumber = errorArr[errorArr.length-1]
   }
 
-  var data = {
+  data = {
     name: this.name,
     line: lineNumber,
-    args: JSON.stringify(args, function (key, value) {
+    args: JSON.stringify(args, function resolver(key, value) {
       if (typeof value === 'function') {
         return value.toString()
-      } else if(value instanceof HTMLElement) {
+      } else if (value instanceof HTMLElement) {
         return value.toString()
       }
       return value
@@ -40,25 +64,8 @@ function consoleData() {
   this.apply(console, args)
 }
 
-var log = console.log
-var debug = console.debug
-var dir = console.dir
-var error = console.error
-var info = console.info
-var warn = console.warn
-
-console.log = consoleData.bind(log)
-console.debug = consoleData.bind(debug)
-console.dir = consoleData.bind(dir)
-console.error = consoleData.bind(error)
-console.info = consoleData.bind(info)
-console.warn = consoleData.bind(warn)
-
-var socketScript = document.createElement('script')
-socketScript.src = queryParams.inspect + 'socket.io/socket.io.js'
-
-socketScript.addEventListener('load', function() {
-  socket = io(queryParams.inspect, {
+socketScript.addEventListener('load', function socketLoad() {
+  socket = window.io(queryParams.inspect, {
     query: {
       id: sessionStorage.getItem('id') || '',
       title: document.title,
@@ -66,21 +73,25 @@ socketScript.addEventListener('load', function() {
     }
   })
 
-  socket.on('connect', function() {
+  socket.on('connect', function socketConnect() {
     if (sessionStorage.getItem('id') === null) {
       sessionStorage.setItem('id', socket.id)
     }
 
-    if (!window.consoleStorage) return
+    if (!window.consoleStorage) {
+      return 
+    }
 
-    window.consoleStorage.forEach(function(item) {
+    window.consoleStorage.forEach(function socketConsole(item) {
       socket.emit('console', item)
     })
 
     delete window.consoleStorage
   })
 
-  socket.on('reload', function() { location.reload() })
+  socket.on('reload', function socketReload() {
+    location.reload() 
+  })
 })
 
 document.head.appendChild(socketScript)

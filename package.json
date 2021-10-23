@@ -3,11 +3,14 @@
   "version": "0.0.1",
   "description": "Connect and debug a remote JS device via websockets",
   "main": "src/server/index.mjs",
+  "type": "module",
   "scripts": {
     "start": "npm run build; npm run server",
     "server": "node src/server/index.mjs",
     "build": "rm -rf dist; node esbuild.config.mjs",
-    "build-watch": "rm -rf dist; node esbuild.config.mjs --watch"
+    "build-watch": "rm -rf dist; node esbuild.config.mjs --watch",
+    "lint": "eslint . --ext .js,.mjs,.cjs",
+    "lint-fix": "npm run lint -- --fix"
   },
   "author": "Luke Mckeen",
   "license": "MIT",
@@ -18,6 +21,8 @@
   },
   "devDependencies": {
     "esbuild": "^0.12.29",
-    "glob": "^7.2.0"
+    "eslint": "^8.1.0",
+    "glob": "^7.2.0",
+    "husky": "^7.0.4"
   }
 }

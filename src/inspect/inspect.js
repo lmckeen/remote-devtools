@@ -1,7 +1,7 @@
 const inspectList = document.querySelector('.inspect-list')
 const load = document.querySelector('.load')
 const tabCheck = document.querySelector('.use-tabs')
-const socket = io()
+const socket = window.io()
 const removeTimeout = {}
 let openAsTab = JSON.parse(localStorage.getItem('openAsTab'))
 
@@ -12,8 +12,8 @@ if (typeof openAsTab !== 'boolean') {
 
 tabCheck.checked = openAsTab
 
-tabCheck.addEventListener('change', e => {
-  openAsTab = e.target.checked
+tabCheck.addEventListener('change', event => {
+  openAsTab = event.target.checked
   localStorage.setItem('openAsTab', openAsTab)
 })
 
@@ -22,9 +22,13 @@ load.addEventListener('click', () => {
 
   try {
     address.classList.remove('error')
+
+    /* testing if url is valid */
+    /* eslint-disable no-new */
     new URL(address.value)
+    
     socket.emit('address', address.value)
-  } catch(e) {
+  } catch (error) {
     address.classList.add('error')
   }
 })
@@ -94,7 +98,9 @@ socket.on('site', site => {
 socket.on('remove', id => {
   const item = document.querySelector(`[data-id="${id}"]`)
   
-  if (!item) return
+  if (!item) {
+    return 
+  }
 
   item.classList.add('disable')
 

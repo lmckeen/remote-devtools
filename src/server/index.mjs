@@ -1,4 +1,4 @@
-import { server } from "./create/index.mjs"
+import { server } from './create/index.mjs'
 
 const { serverUrl } = server()
 

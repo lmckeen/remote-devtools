@@ -1,8 +1,8 @@
-import os from 'os'
 import { createServer } from 'http'
+import os from 'os'
+import { set } from '../storage/index.mjs'
 import { setupExpress } from '../express/index.mjs'
 import { setupSocket } from '../socket/index.mjs'
-import { set } from '../storage/index.mjs'
 
 const port = set('port', 3030)
 const networks = Object.entries(os.networkInterfaces())
@@ -25,6 +25,6 @@ export function server() {
   return {
     port,
     serverIp,
-    serverUrl,
+    serverUrl
   }
 }

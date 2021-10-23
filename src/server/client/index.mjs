@@ -1,4 +1,4 @@
-import { sendInspectorBroadcast } from '../inspect/index.mjs'
+import { broadcastToInspector } from '../inspect/index.mjs'
 import { send } from '../socket/index.mjs'
 
 const clientRooms = {}
@@ -9,7 +9,7 @@ export function addClient(client) {
   const { query, address } = client.handshake
   const { title, href, id } = query
   const ip = address.split(':').pop()
-  let clientId = id || client.id
+  const clientId = id || client.id
 
   if (clientRemoved[clientId]) {
     clearTimeout(clientTimeouts[clientId])
@@ -21,7 +21,7 @@ export function addClient(client) {
 
   if (clientRooms[clientId]) {
     client.join(clientId)
-    sendInspectorBroadcast('site', clientRooms[clientId])
+    broadcastToInspector('site', clientRooms[clientId])
   } else {
     clientRooms[clientId] = {
       title,
@@ -29,13 +29,13 @@ export function addClient(client) {
       ip,
       id: clientId
     }
-    sendInspectorBroadcast('site', clientRooms[clientId])
+    broadcastToInspector('site', clientRooms[clientId])
   }
 
   client.on('disconnect', () => {
     removeClient(clientId)
 
-    sendInspectorBroadcast('remove', clientId)
+    broadcastToInspector('remove', clientId)
   })
 
   client.onAny((type, data) => {

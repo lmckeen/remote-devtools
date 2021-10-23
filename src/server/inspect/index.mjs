@@ -21,8 +21,8 @@ export function addInspector(inspector) {
   inspector.on('reload', id => send(id, 'reload'))
 }
 
-export function sendInspectorBroadcast(event, data) {
-  for (const [key, value] of Object.entries(inspectorRooms)) {
+export function broadcastToInspector(event, data) {
+  for (const [key] of Object.entries(inspectorRooms)) {
     send(key, event, data)
   }
 }

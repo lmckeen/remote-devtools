@@ -1,6 +1,8 @@
-var time = 5;
+var time = 5
 var content = document.querySelector('h1')
-var interval = setInterval(function() {
+var interval = setInterval(retryCountdown, 1000)
+
+function retryCountdown() {
   time--
   if (time === 0) {
     content.innerText = 'Reloading!'
@@ -10,4 +12,4 @@ var interval = setInterval(function() {
     content.innerText = 'Retrying Redirect: ' + time
   }
   document.title = content.innerText
-}, 1000);
+}
