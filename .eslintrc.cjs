@@ -230,6 +230,9 @@ module.exports = {
           selector: 'VariableDeclaration[kind=\'const\']',
           message: 'const keyword is not allowed.'
         }, {
+          selector: 'ClassDeclaration',
+          message: 'classes are not allowed.'
+        }, {
           selector: 'Super',
           message: 'super keyword is not allowed.'
         }, {
