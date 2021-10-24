@@ -212,7 +212,8 @@ module.exports = {
     {
       files: ['.eslintrc.cjs'],
       rules: {
-        'id-length': 'off'
+        'id-length': 'off',
+        'max-lines': 'off'
       }
     },
     {
@@ -275,8 +276,59 @@ module.exports = {
           selector: 'MemberExpression[optional=true]',
           message: 'Optional chaining is not allowed.'
         }, {
+          selector: 'ImportExpression',
+          message: 'Dynamic Import Expressions are not allowed.'
+        }, {
           selector: 'Identifier[name=\'fetch\']',
           message: 'fetch keyword is not allowed.'
+        }, {
+          selector: 'Identifier[name=\'globalThis\']',
+          message: 'globalThis keyword is not allowed.'
+        }, {
+          selector: 'Identifier[name=\'Symbol\']',
+          message: 'Symbol keyword is not allowed.'
+        }, {
+          selector: 'Identifier[name=\'WeakRef\']',
+          message: 'WeakRef keyword is not allowed.'
+        }, {
+          selector: 'MemberExpression[object.name=\'Array\'][property.name =\'from\']',
+          message: 'Array.from is not allowed.'
+        }, {
+          selector: 'MemberExpression[object.name=\'Array\'][property.name =\'keys\']',
+          message: 'Array.keys is not allowed.'
+        }, {
+          selector: 'MemberExpression[object.name=\'Array\'][property.name =\'find\']',
+          message: 'Array.find is not allowed.'
+        }, {
+          selector: 'MemberExpression[object.name=\'Array\'][property.name =\'findIndex\']',
+          message: 'Array.findIndex is not allowed.'
+        }, {
+          selector: 'MemberExpression[object.name=\'Array\'][property.name =\'includes\']',
+          message: 'Array.includes is not allowed.'
+        }, {
+          selector: 'MemberExpression[object.name=\'Number\'][property.name =\'isInteger\']',
+          message: 'Number.isInteger is not allowed.'
+        }, {
+          selector: 'MemberExpression[object.name=\'Object\'][property.name =\'entries\']',
+          message: 'Object.entries is not allowed.'
+        }, {
+          selector: 'MemberExpression[object.name=\'Object\'][property.name =\'values\']',
+          message: 'Object.values is not allowed.'
+        }, {
+          selector: 'MemberExpression[object.name=\'Object\'][property.name =\'fromEntries\']',
+          message: 'Object.fromEntries is not allowed.'
+        }, {
+          selector: 'MemberExpression[object.name=\'Promise\'][property.name =\'allSettled\']',
+          message: 'Promise.allSettled is not allowed.'
+        }, {
+          selector: 'MemberExpression[object.name=\'Promise\'][property.name =\'finally\']',
+          message: 'Promise.finally is not allowed.'
+        }, {
+          selector: 'MemberExpression[object.name=\'Promise\'][property.name =\'any\']',
+          message: 'Promise.any is not allowed.'
+        }, {
+          selector: 'CatchClause[param=null]',
+          message: 'Catch requires a parameter.'
         }]
       }
     }
