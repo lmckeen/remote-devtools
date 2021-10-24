@@ -10,7 +10,9 @@
     "build": "rm -rf dist; node esbuild.config.mjs",
     "build-watch": "rm -rf dist; node esbuild.config.mjs --watch",
     "lint": "eslint . --ext .js,.mjs,.cjs",
-    "lint-fix": "npm run lint -- --fix"
+    "lint-fix": "npm run lint -- --fix",
+    "prepare": "husky install",
+    "precommit": "echo 🤞; npm run lint-fix"
   },
   "author": "Luke Mckeen",
   "license": "MIT",
